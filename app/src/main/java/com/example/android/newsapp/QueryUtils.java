@@ -250,8 +250,8 @@ final class QueryUtils {
      * @param authorId is the string from the JSON document which contains the author name.
      * @return the author name capitalized and separated by blank characters.
      */
-    static String parseAuthor(String authorId) {
-        String author = "";
+    private static String parseAuthor(String authorId) {
+        String author;
 
         // Remove "author/" from input string.
         String[] parts = authorId.split("/");
@@ -261,7 +261,8 @@ final class QueryUtils {
         parts = author.split("-");
         for (int i = 0; i < parts.length; i++) {
             if (i == 0) author = parts[i].substring(0, 1).toUpperCase() + parts[i].substring(1);
-            else author = author + " " + parts[i].substring(0, 1).toUpperCase() + parts[i].substring(1);
+            else
+                author = author + " " + parts[i].substring(0, 1).toUpperCase() + parts[i].substring(1);
         }
 
         return author;
@@ -274,8 +275,8 @@ final class QueryUtils {
      * @param webPublicationDate is the string from the JSON document which contains date and time.
      * @return date and time separated by a blank character.
      */
-    static String parseDateTime(String webPublicationDate) {
-        String dateTime = "";
+    private static String parseDateTime(String webPublicationDate) {
+        String dateTime;
 
         // Remove "T" character from input string.
         String[] parts = webPublicationDate.split("T");

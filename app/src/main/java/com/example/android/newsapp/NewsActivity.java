@@ -47,10 +47,6 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
     // * Retrieve list of 50 news (page-size=50).
     // * Get the latest news (order-by=newest).
     private static final String url = "http://content.guardianapis.com/search?q=spain&api-key=test&reference-type=author&show-references=author&page-size=50&order-by=newest";
-
-    // Adapter for the list of news.
-    private NewsAdapter adapter;
-
     // Using the ButterKnife library for view injection.
     @BindView(R.id.list)
     ListView newsListView;
@@ -58,6 +54,8 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
     View loadingIndicator;
     @BindView(R.id.empty_view)
     TextView emptyStateTextView;
+    // Adapter for the list of news.
+    private NewsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,10 +89,8 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
             }
         });
 
-        // If there is a network connection, fetch data
-        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-        if (networkInfo != null && networkInfo.isConnected()) {
+        // If there is a network connection, fetch data.
+        if (isThereConnection()) {
             // Initialize the loader. Pass in the int ID constant defined above and pass in null for
             // the bundle. Pass in this activity for the LoaderCallbacks parameter (which is valid
             // because this activity implements the LoaderCallbacks interface).
@@ -117,16 +113,22 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
         // Hide loading indicator because the data has been loaded.
         loadingIndicator.setVisibility(View.GONE);
 
-        // Set empty state text to display "No results found for..."
-        emptyStateTextView.setText(R.string.no_results);
-
         // Clear the adapter of previous news data.
         adapter.clear();
 
-        // If there is a valid list of {@link News}s, then add them to the adapter's data set.
-        // This will trigger the ListView to update.
-        if (news != null && !news.isEmpty()) {
-            adapter.addAll(news);
+        // Checks if there's still network connection.
+        if (isThereConnection()) {
+            // If there is network connection and we have retrieved a valid list of {@link News}s,
+            // then add them to the adapter's data set. This will trigger the ListView to update.
+            if (news != null && !news.isEmpty()) {
+                adapter.addAll(news);
+            } else {
+                // Set empty state text to display "No results found".
+                emptyStateTextView.setText(R.string.no_results);
+            }
+        } else {
+            // There is no network connection.
+            emptyStateTextView.setText(R.string.no_internet_connection);
         }
     }
 
@@ -160,5 +162,16 @@ public class NewsActivity extends AppCompatActivity implements LoaderCallbacks<L
             // Restore previous state (including selected item index and scroll position).
             newsListView.onRestoreInstanceState(savedInstanceState.getParcelable("newsListViewState"));
         }
+    }
+
+    /**
+     * Checks if there is connection to network.
+     *
+     * @return true if there is network connection, false otherwise.
+     */
+    boolean isThereConnection() {
+        ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
     }
 }
