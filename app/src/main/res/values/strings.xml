@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Name for the application. -->
+    <string name="app_name">News App</string>
+
+    <!-- Title for the application. -->
+    <string name="app_title">News about Spain (The Guardian)</string>
+
+    <!-- Text to display in the list when there are no news. -->
+    <string name="no_results">No results found :(</string>
+
+    <!-- Error message when there is no internet connectivity. -->
+    <string name="no_internet_connection">No internet connection.</string>
+
+    <!-- Titles for every section of a list_item. -->
+    <string name="news_section">Section:</string>
+    <string name="news_date">Date:</string>
+    <string name="news_author">Author:</string>
+    <string name="news_authors">Authors:</string>
+</resources>

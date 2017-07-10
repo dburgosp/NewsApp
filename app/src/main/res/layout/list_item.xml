@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/news_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textAllCaps="true"
+        android:textColor="@color/colorPrimaryDark"
+        android:textStyle="bold"
+        tools:text="Title" />
+
+    <LinearLayout style="@style/itemSectionStyle">
+
+        <TextView
+            android:id="@+id/news_section_title"
+            style="@style/itemTitleStyle"
+            android:text="@string/news_section" />
+
+        <TextView
+            android:id="@+id/news_section"
+            style="@style/itemContentStyle"
+            tools:text="Section name" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/itemSectionStyle">
+
+        <TextView
+            android:id="@+id/news_date_title"
+            style="@style/itemTitleStyle"
+            android:text="@string/news_date" />
+
+        <TextView
+            android:id="@+id/news_date"
+            style="@style/itemContentStyle"
+            tools:text="YYYY-MM-DD HH:MM:SS" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/itemSectionStyle">
+
+        <TextView
+            android:id="@+id/news_author_title"
+            style="@style/itemTitleStyle"
+            android:text="@string/news_authors" />
+
+        <TextView
+            android:id="@+id/news_author"
+            style="@style/itemContentStyle"
+            tools:text="Author 1, Auhor 2 ..." />
+    </LinearLayout>
+</LinearLayout>
