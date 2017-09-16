@@ -2,7 +2,7 @@
 
 This is a simple Android Studio project for the [Android Basics Nanodegree](https://www.udacity.com/course/android-basics-nanodegree-by-google--nd803) given by Udacity and Google.
 
-The goal was to create a News feed app which gives a user regularly-updated news from the internet related to a particular topic, person, or location. The presentation of the information as well as the topic was up to the student. I decided to show [the most recent news related to the topic **Spain** from The Guardian API](http://content.guardianapis.com/search?q=spain&api-key=test&reference-type=author&show-references=author&page-size=50&order-by=newest).
+The goal was to create a News feed app which gives a user regularly-updated news from the internet related to a particular topic, person, or location. The presentation of the information as well as the topic was up to the student. I decided to show [the most recent news related to the topic '*Spain*' from The Guardian API](http://content.guardianapis.com/search?q=spain&api-key=test&reference-type=author&show-references=author&page-size=50&order-by=newest).
 
 Some screen captures:
 
